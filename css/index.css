@@ -22,13 +22,42 @@
     margin: auto;
 }
 
+#headertext {
+    margin-left: 7.5em;
+}
+
 body {
     background-color: #cb6262;
 }
 
-* {
+.headbox {
+    background: #6f2f2f;
+    width: 100vw;
+    border: solid white 2px;
+    color: white;
+    user-select: none;
+}
 
-    margin: auto;
+h1 {
+    font-weight: bold;
+}
+
+h3 {
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+h4 {
+    float: right;
+}
+
+/** {*/
+
+/*    margin: auto;*/
+/*}*/
+
+#topCont {
+    margin-left: 10em;
 }
 
 #loadingArea {
@@ -40,6 +69,11 @@ body {
     background: #cb6262;
     border: none;
     float: left;
+    margin-left: 3em;
+}
+
+#movieCards {
+    margin-left: 50px;
 }
 
 hr {
