@@ -87,6 +87,7 @@
 
      // patchMovie(5)
 
+// const theDeleteBtn = `<button type="button" class="deleteBtn" id="${movie.id}">Delete</button>`
 
     function renderMovieCards() {
         $("#loadingArea").css("visibility", "visible");
@@ -97,11 +98,11 @@
                 html += `<div class="col-4">`
                 html += `<div class="card" style="width: 20rem;">`
                 html += "<img src='" + movie.poster + "'> <br/>"
-                html += "  <div class=\"card-body\">"
+                html += `<button type="button" class="deleteBtn" id="${movie.id}">Delete</button>`
+                html += "<div class=\"card-body\">"
                 html += "<h1>" + movie.title.toLowerCase() + "</h1>"
                 html += "<h3>(" + movie.year + ")</h3> <br/>"
                 html += "<h3> Rating: " + movie.rating + "/5</h3> <br/>"
-
                 html += "<hr>"
                 html += "<p>" + movie.plot + "</p>"
                 html += "</div>"
@@ -112,7 +113,23 @@
 
             })
         })
+        editMovies();
     }
+
+
+    function editMovies() {
+
+    AJAX(url).then(function (data) {
+        let formHTML =`<select name="editableMovies">`
+        data.forEach(function (movie) {
+            formHTML += `<option value="${movie.id}">${movie.title}</option>`
+        })
+        formHTML += `</select>`
+        $("#moviesToEdit").html(formHTML)
+    })
+    }
+
+    editMovies()
 
     function addMovie() {
         let newMovie = {}
@@ -133,12 +150,29 @@
     }
 
     renderMovieCards()
+
+
     $("#refreshDB").click(renderMovieCards)
     $("#submissionBtn").click(addMovie)
     $("#submissionBtn").click(function () {
         this.form.reset();
     })
+$(document).on('click','.deleteBtn',function(){
+    let selectedId = this.id
+    alert("You have deleted this movie.")
+    deleteMovie(selectedId)
+    console.log(selectedId);
+    setTimeout(renderMovieCards, 2000);
+});
 
+
+    // $(".deleteBtn").click(function (event) {
+    //     event.preventDefault();
+    //
+    //     //
+    //     //
+    //     // renderMovieCards();
+    // })
 
 
 // loading -------------------------------------
