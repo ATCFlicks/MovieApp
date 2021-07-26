@@ -27,7 +27,7 @@ function getSingleMovie (movieId) {
             console.log("Single movie",data);
         })
 }
-getSingleMovie(18);
+// getSingleMovie(18);
 // post a movie -------------------------
 
 //  AJAX(url, method = "POST").then(function (){
@@ -56,12 +56,12 @@ getSingleMovie(18);
 
 // delete a movie -------------------------
 function deleteMovie(movieId) {
-    AJAX(getSingleMovie(20), method = 'DELETE')
+    AJAX(`${url}/${movieId}`, method = 'DELETE')
         .then(function (data){
             console.log("Delete movie",data);
         })
 }
-deleteMovie(20);
+deleteMovie(5);
 
 // loading -------------------------------------
 document.onreadystatechange = function() {
