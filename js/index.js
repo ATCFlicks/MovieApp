@@ -1,34 +1,42 @@
-`use strict`;
+`use strict`
 // alert('js linked');
-const url = `https://guttural-blushing-margin.glitch.me/movies`
 
-function AJAX(url, method = "GET", data) {
-    const options = {
-        method: method,
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-    };
-    return fetch(url, options)
-        .then(res => res.json())
-        .then(responseData => responseData)
-        .catch(err => err)
-}
-// all movies --------------------------
-AJAX(url)
-.then(function (data){
-    console.log(data);
-})
-// a single movie --------------------------
-function getSingleMovie (movieId) {
-    AJAX(`${url}/${movieId}`)
-        .then(function (data){
-            console.log("Single movie",data);
+
+    const url = `https://guttural-blushing-margin.glitch.me/movies`
+
+
+// AJAX function for a GET
+    function AJAX(url, method = "GET", data) {
+        const options = {
+            method: method,
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        };
+        return fetch(url, options)
+            .then(res => res.json())
+            .then(responseData => responseData)
+            .catch(err => err)
+    }
+
+// GET all movies
+    AJAX(url)
+        .then(function (data) {
+            console.log(data);
         })
-}
+
+// GET single movie
+    function getSingleMovie(movieId) {
+        AJAX(`${url}/${movieId}`)
+            .then(function (data) {
+                console.log("Single movie", data);
+            })
+    }
+
 // getSingleMovie(18);
-// post a movie -------------------------
+
+// post a movie
 
 //  AJAX(url, method = "POST").then(function (){
 //      const reviewObj = {
@@ -54,17 +62,87 @@ function getSingleMovie (movieId) {
 //          .catch(err => err)
 //  })
 
-// delete a movie -------------------------
-function deleteMovie(movieId) {
-    AJAX(`${url}/${movieId}`, method = 'DELETE')
-        .then(function (data){
-            console.log("Delete movie",data);
+// delete a movie
+    function deleteMovie(movieId) {
+        fetch(url + "/" + movieId, {method: "DELETE"})
+            .then(function (data) {
+                console.log("Delete movie", data);
+            })
+    }
+
+
+    // deleteMovie(5);
+
+
+    // patch movie
+    function patchMovie(movieId) {
+        fetch(url + "/" + movieId, {
+            method: "PATCH",
+            body: JSON.stringify({
+                year: 2021,
+
+            })
         })
-}
-deleteMovie(5);
+    }
+
+     // patchMovie(5)
+
+
+    function renderMovieCards() {
+        $("#loadingArea").css("visibility", "visible");
+        $("#movieCards").html("")
+        AJAX(url).then(function (data) {
+            data.forEach(function (movie) {
+                let html = ""
+                html += `<div class="col-4">`
+                html += `<div class="card" style="width: 20rem;">`
+                html += "<img src='" + movie.poster + "'> <br/>"
+                html += "  <div class=\"card-body\">"
+                html += "<h1>" + movie.title.toLowerCase() + "</h1>"
+                html += "<h3>(" + movie.year + ")</h3> <br/>"
+                html += "<h3> Rating: " + movie.rating + "/5</h3> <br/>"
+
+                html += "<hr>"
+                html += "<p>" + movie.plot + "</p>"
+                html += "</div>"
+                html += "</div>"
+                html += "</div>"
+                $("#movieCards").append(html)
+                $("#loadingArea").css("visibility", "hidden");
+
+            })
+        })
+    }
+
+    function addMovie() {
+        let newMovie = {}
+        newMovie.title = $("#movieTitle").val()
+        newMovie.rating = $("#movieRating").val()
+        newMovie.poster = $("#moviePoster").val()
+        newMovie.plot = $("#moviePlot").val()
+        newMovie.year = $("#movieYear").val()
+
+        const options = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(newMovie),
+        };
+        fetch(url, options).then(renderMovieCards);
+    }
+
+    renderMovieCards()
+    $("#refreshDB").click(renderMovieCards)
+    $("#submissionBtn").click(addMovie)
+    $("#submissionBtn").click(function () {
+        this.form.reset();
+    })
+
+
 
 // loading -------------------------------------
-document.onreadystatechange = function() {
+document.onreadystatechange = function () {
     if (document.readyState !== "complete") {
         document.querySelector(
             "body").style.visibility = "hidden";

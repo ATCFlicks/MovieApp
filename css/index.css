@@ -25,3 +25,37 @@
 body {
     background-color: #cb6262;
 }
+
+* {
+
+    margin: auto;
+}
+
+#loadingArea {
+    margin-top: 50px;
+    visibility: hidden;
+}
+
+.card {
+    background: #cb6262;
+    border: none;
+    float: left;
+}
+
+hr {
+    color: white;
+}
+
+form {
+    clear: left;
+}
+button {
+    display: flex;
+    justify-content: center;
+    margin: auto;
+}
+
+img {
+    width: 300px;
+    height: 444px;
+}
