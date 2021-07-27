@@ -87,8 +87,10 @@ function renderMovieCards() {
         data.forEach(function (movie) {
             let html = ""
             // html += `<div class="">`
+            html += `<div class="col-3>`
+            html += `<div class="container" id="${movie.id}">`
             html += `<div class="card text-white ml-0 mb-3 " style="width: 20rem;">`
-            html += "<img class=''  src='" + movie.poster + "'> <br/>"
+            html += `<img class=''  src='${movie.poster}' id="${movie.id}"> <br/>`
             html += `<button type="button" class="deleteBtn" id="${movie.id}">Delete</button>`
             html += "<div class=\"card-body\">"
             html += "<h1>" + movie.title.toUpperCase() + "</h1>"
@@ -99,6 +101,7 @@ function renderMovieCards() {
             html += "</div>"
             html += "</div>"
             html += "</div>"
+            html += `</div>`
             $("#movieCards").append(html)
             $("#loadingArea").css("visibility", "hidden");
 
@@ -106,6 +109,7 @@ function renderMovieCards() {
     })
     editMovies();
 }
+
 
 
 function editMovies() {
@@ -165,6 +169,17 @@ $("#editBtn").click(function () {
 })
 
 
+function deleteSnackbar() {
+    // Get the snackbar DIV
+    var x = document.getElementById("snackbar");
+
+    // Add the "show" class to DIV
+    x.className = "show";
+
+    // After 3 seconds, remove the show class from DIV
+    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+}
+
 var editMovieID = 0;
 
 renderMovieCards()
@@ -177,10 +192,10 @@ $("#submissionBtn").click(function () {
 })
 $(document).on('click', '.deleteBtn', function () {
     let selectedId = this.id
-    alert("You have deleted this movie.")
     deleteMovie(selectedId)
     console.log(selectedId);
     setTimeout(renderMovieCards, 2000);
+    deleteSnackbar();
 });
 
 $(document).on('change', '#movieEdit', function () {
@@ -203,6 +218,12 @@ $(document).on('change', '#movieEdit', function () {
     }
     editMovieGrab(searchVal)
 });
+
+
+$(document).on('hover', 'img', function () {
+    alert("You are hovering")
+})
+
 
 
 // $(".deleteBtn").click(function (event) {
