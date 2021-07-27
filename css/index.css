@@ -109,9 +109,13 @@ label {
 
 nav {
     background-color: #FCA311;
-    width: 100vw;
 }
 
 a {
     color: #14213D;
+    margin-left: 7.5em;
+}
+
+#form1 {
+    margin-left: 7.5em;
 }
