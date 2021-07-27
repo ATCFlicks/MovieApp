@@ -64,16 +64,25 @@ function getSingleMovie(movieId) {
 
 // delete a movie
 function deleteMovie(movieId) {
+    // let confirmDelete = confirm("Do you want to delete this movie?")
+    // if (confirmDelete === "true") {
+    //     console.log(confirmDelete)
+    //     fetch(url + "/" + movieId, {method: "DELETE"})
+    //         .then(function (data) {
+    //             console.log("Delete movie", data);
+    //         })
+    //
+    // }
+
     fetch(url + "/" + movieId, {method: "DELETE"})
         .then(function (data) {
             console.log("Delete movie", data);
         })
+
 }
 
 
-deleteMovie(5);
-
-
+// deleteMovie(5);
 
 
 // patchMovie(4)
@@ -91,7 +100,7 @@ function renderMovieCards() {
             html += `<div class="container" id="${movie.id}">`
             html += `<div class="card text-white ml-0 mb-3 " style="width: 20rem;">`
             html += `<img class=''  src='${movie.poster}' id="${movie.id}"> <br/>`
-            html += `<button type="button" class="deleteBtn" id="${movie.id}">Delete</button>`
+            html += `<button type="button" class="deleteBtn .hidden" id="${movie.id}">X</button>`
             html += "<div class=\"card-body\">"
             html += "<h1>" + movie.title.toUpperCase() + "</h1>"
             html += "<h4>(" + movie.year + ")</h4> <br/>"
@@ -109,7 +118,6 @@ function renderMovieCards() {
     })
     editMovies();
 }
-
 
 
 function editMovies() {
@@ -150,7 +158,7 @@ function addMovie() {
 // patch movie
 $("#editBtn").click(function () {
     let editedMovie = {};
-        editedMovie.id = editMovieID,
+    editedMovie.id = editMovieID,
         editedMovie.title = $("#movieEdit option:selected").text(),
         editedMovie.year = $("#movieYearEdit").val(),
         editedMovie.rating = $("#movieRatingEdit").val(),
@@ -177,7 +185,9 @@ function deleteSnackbar() {
     x.className = "show";
 
     // After 3 seconds, remove the show class from DIV
-    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+    setTimeout(function () {
+        x.className = x.className.replace("show", "");
+    }, 3000);
 }
 
 var editMovieID = 0;
@@ -193,10 +203,24 @@ $("#submissionBtn").click(function () {
 $(document).on('click', '.deleteBtn', function () {
     let selectedId = this.id
     deleteMovie(selectedId)
-    console.log(selectedId);
+    // console.log(selectedId);
     setTimeout(renderMovieCards, 2000);
-    deleteSnackbar();
 });
+//
+// $(document).on({
+//     mouseenter: function () {
+//         let btnId = `#${this.id}`
+//         $("#deleteBtn").toggleClass("hidden")
+//         // $(btnId).css("display", "block")
+//         //stuff to do on mouse enter
+//     },
+//     mouseleave: function () {
+//         $("#deleteBtn").toggleClass("hidden")
+//         // alert('no')
+//         //stuff to do on mouse leave
+//     }
+// }, "img");
+
 
 $(document).on('change', '#movieEdit', function () {
     console.log(this.value)
@@ -210,12 +234,13 @@ $(document).on('change', '#movieEdit', function () {
     function editMovieGrab(movieId) {
         AJAX(`${url}/${movieId}`)
             .then(function (data) {
-            $("#movieYearEdit").val(data.year)
-            $("#movieRatingEdit").val(data.rating)
-            $("#moviePosterEdit").val(data.poster)
-            $("#moviePlotEdit").val(data.plot)
-        })
+                $("#movieYearEdit").val(data.year)
+                $("#movieRatingEdit").val(data.rating)
+                $("#moviePosterEdit").val(data.poster)
+                $("#moviePlotEdit").val(data.plot)
+            })
     }
+
     editMovieGrab(searchVal)
 });
 
@@ -223,7 +248,6 @@ $(document).on('change', '#movieEdit', function () {
 $(document).on('hover', 'img', function () {
     alert("You are hovering")
 })
-
 
 
 // $(".deleteBtn").click(function (event) {

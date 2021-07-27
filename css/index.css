@@ -103,13 +103,19 @@ img {
 .deleteBtn {
     position: absolute;
     top: 0;
-    left: 15em;
-    /*visibility: hidden;*/
+    left: 15.5em;
     background: transparent;
-    color: #FCA311;
+    color: red;
     font-weight: bold;
+    /*visibility: hidden;*/
+    border: none;
+    font-size: large;
+
 }
 
+.hidden {
+    display: none;
+}
 
 label {
     color: #FCA311;
@@ -133,8 +139,8 @@ a {
     visibility: hidden; /* Hidden by default. Visible on click */
     min-width: 250px; /* Set a default minimum width */
     margin-left: -125px; /* Divide value of min-width by 2 */
-    background-color: #333; /* Black background color */
-    color: #fff; /* White text color */
+    background-color: black; /* Black background color */
+    color: #FCA311; /* White text color */
     text-align: center; /* Centered text */
     border-radius: 2px; /* Rounded borders */
     padding: 16px; /* Padding */
