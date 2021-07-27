@@ -21,10 +21,10 @@ function AJAX(url, method = "GET", data) {
 }
 
 // GET all movies
-AJAX(url)
-    .then(function (data) {
-        console.log(data);
-    })
+// AJAX(url)
+//     .then(function (data) {
+//         console.log(data);
+//     })
 
 // GET single movie
 function getSingleMovie(movieId) {
@@ -86,12 +86,12 @@ function renderMovieCards() {
     AJAX(url).then(function (data) {
         data.forEach(function (movie) {
             let html = ""
-            html += `<div class="col-4">`
-            html += `<div class="card" style="width: 20rem;">`
-            html += "<img src='" + movie.poster + "'> <br/>"
+            // html += `<div class="">`
+            html += `<div class="card text-white ml-0 mb-3 " style="width: 20rem;">`
+            html += "<img class=''  src='" + movie.poster + "'> <br/>"
             html += `<button type="button" class="deleteBtn" id="${movie.id}">Delete</button>`
             html += "<div class=\"card-body\">"
-            html += "<h1>" + movie.title.toLowerCase() + "</h1>"
+            html += "<h1>" + movie.title.toUpperCase() + "</h1>"
             html += "<h4>(" + movie.year + ")</h4> <br/>"
             html += "<h4> Rating: " + movie.rating + "/5</h4> <br/>"
             html += "<hr>"
@@ -187,6 +187,10 @@ $(document).on('change', '#movieEdit', function () {
     console.log(this.value)
     let searchVal = this.value;
     editMovieID = this.value;
+    $("#movieYearEdit").removeAttr('readonly')
+    $("#movieRatingEdit").removeAttr('readonly')
+    $("#moviePosterEdit").removeAttr('readonly')
+    $("#moviePlotEdit").removeAttr('readonly')
 
     function editMovieGrab(movieId) {
         AJAX(`${url}/${movieId}`)

@@ -27,24 +27,26 @@
 }
 
 body {
-    background-color: #cb6262;
+    background-color: #14213D;
 }
 
-.headbox {
-    background: #6f2f2f;
-    width: 100vw;
-    border: solid white 2px;
-    color: white;
-    user-select: none;
-}
+/*.headbox {*/
+/*    background: #6f2f2f;*/
+/*    width: 100vw;*/
+/*    border: solid white 2px;*/
+/*    color: white;*/
+/*    user-select: none;*/
+/*}*/
 
 h1 {
     font-weight: bold;
+    color: #FCA311;
 }
 
 h3 {
     font-weight: bold;
     text-decoration: underline;
+    color: #FCA311;
 }
 
 h4 {
@@ -66,7 +68,7 @@ h4 {
 }
 
 .card {
-    background: #cb6262;
+    background: #14213D;
     border: none;
     float: left;
     margin-left: 3em;
@@ -99,4 +101,17 @@ img {
 }
 
 .deleteBtn {
+}
+
+label {
+    color: #FCA311;
+}
+
+nav {
+    background-color: #FCA311;
+    width: 100vw;
+}
+
+a {
+    color: #14213D;
 }
