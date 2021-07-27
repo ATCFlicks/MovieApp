@@ -101,6 +101,8 @@ img {
 }
 
 .deleteBtn {
+    z-index: 1;
+
 }
 
 label {
