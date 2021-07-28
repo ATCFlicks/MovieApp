@@ -61,24 +61,23 @@ function getSingleMovie(movieId) {
 //          .then(responseData => responseData)
 //          .catch(err => err)
 //  })
-
+function confirmDelete(movieId){
+    let confirmDelete = confirm("Do you want to delete this movie?");
+    if (confirmDelete === "true") {
+        console.log(confirmDelete)
+        deleteMovie(movieId)
+    }
+}
 // delete a movie
 function deleteMovie(movieId) {
-    // let confirmDelete = confirm("Do you want to delete this movie?")
-    // if (confirmDelete === "true") {
-    //     console.log(confirmDelete)
-    //     fetch(url + "/" + movieId, {method: "DELETE"})
-    //         .then(function (data) {
-    //             console.log("Delete movie", data);
-    //         })
-    //
-    // }
-
-    fetch(url + "/" + movieId, {method: "DELETE"})
-        .then(function (data) {
-            console.log("Delete movie", data);
-        })
-
+        fetch(url + "/" + movieId, {method: "DELETE"})
+            .then(function (data) {
+                console.log("Delete movie", data);
+            })
+    // fetch(url + "/" + movieId, {method: "DELETE"})
+    //     .then(function (data) {
+    //         console.log("Delete movie", data);
+    //     })
 }
 
 
@@ -202,6 +201,7 @@ $("#submissionBtn").click(function () {
 })
 $(document).on('click', '.deleteBtn', function () {
     let selectedId = this.id
+    // confirmDelete(selectedId)
     deleteMovie(selectedId)
     // console.log(selectedId);
     setTimeout(renderMovieCards, 2000);
@@ -245,18 +245,10 @@ $(document).on('change', '#movieEdit', function () {
 });
 
 
-$(document).on('hover', 'img', function () {
-    alert("You are hovering")
-})
 
 
-// $(".deleteBtn").click(function (event) {
-//     event.preventDefault();
-//
-//     //
-//     //
-//     // renderMovieCards();
-// })
+
+
 
 
 // loading -------------------------------------
