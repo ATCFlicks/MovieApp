@@ -105,7 +105,7 @@ function renderMovieCards() {
             html += "<h4>(" + movie.year + ")</h4> <br/>"
             html += "<h4> Rating: " + movie.rating + "/5</h4> <br/>"
             html += "<hr>"
-            html += "<p>" + movie.plot + "</p>"
+            html += "<p class='plot'>" + movie.plot + "</p>"
             html += "</div>"
             html += "</div>"
             html += "</div>"

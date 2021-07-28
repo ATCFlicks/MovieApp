@@ -221,3 +221,15 @@ a {
         opacity: 0;
     }
 }
+
+footer {
+    margin-top: 15em;
+    display: flex;
+    justify-content: center;
+    color: white;
+
+}
+
+.plot:hover {
+    color: #FCA311;
+}
