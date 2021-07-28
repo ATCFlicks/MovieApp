@@ -41,6 +41,7 @@ body {
 h1 {
     font-weight: bold;
     color: #FCA311;
+    font-size: 2rem;
 }
 
 h3 {
@@ -73,6 +74,8 @@ h4 {
     float: left;
     margin-left: 3em;
 }
+
+
 
 #movieCards {
     margin-left: 50px;
